@@ -1,0 +1,38 @@
+.el-input {
+    &__inner {
+        height: 32px;
+        line-height: 32px;
+        &:focus {
+            border-color: #d36b00;
+        }
+    }
+}
+
+.el-form-item {
+    margin-bottom: 20px;
+    &__content {
+        line-height: 32px;
+    }
+    &__label {
+        line-height: 14px;
+        margin-bottom: 5px;
+    }
+}
+
+//el-button
+.el-button {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    &--primary {
+        color: #fff;
+        background-image: linear-gradient(to bottom, #444444, #d36b00);
+        background-color: #d36b00;
+        border-color: #d36b00;
+        &:hover, &:active, &:focus {
+            color: #fff;
+            background-color: #d36b00;
+            border-color: #d36b00;
+        }
+    }
+}
