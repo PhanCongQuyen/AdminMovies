@@ -2,7 +2,6 @@
     <div>
        <HeaderPage/>
       <Nuxt />
-      <span>footer</span>
     </div>
   </template>
 <script>
