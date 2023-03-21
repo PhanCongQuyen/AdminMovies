@@ -1,7 +1,7 @@
 <template>
     <header id="header">
         <div class="wrap_header">
-            <a class="wrap-brand-name" href="/" title="logo phimz69">
+            <a class="wrap-brand-name" href="/dashboard" title="logo phimz69">
                 <nuxt-img id="brand-name" format="webp" src="/icon.png" width="130" height="50" alt="logo-phimz" />
             </a>
             <button class="btn-right" @click="setRedisServer">
@@ -14,8 +14,8 @@
         <el-dialog :title="dialogInfor.title" :visible.sync="dialogVisible" width="30%" center :before-close="clearData">
             <span>{{ dialogInfor.content }}</span>
             <span slot="footer" class="dialog-footer">
-                <el-button @click="handleCancel(dialogInfor.type)">Cancel</el-button>
-                <el-button type="primary" @click="handleAcceptUpload(dialogInfor.type)">Confirm</el-button>
+                <el-button v-loading.fullscreen.lock="fullscreenLoading" @click="handleCancel(dialogInfor.type)">Cancel</el-button>
+                <el-button v-loading.fullscreen.lock="fullscreenLoading" type="primary" @click="handleAcceptUpload(dialogInfor.type)">Confirm</el-button>
             </span>
         </el-dialog>
     </header>
@@ -28,7 +28,8 @@ export default {
         return {
             dialogVisible: false,
             dialogInfor: {},
-            paramsUpload: []
+            paramsUpload: [],
+            fullscreenLoading: false
         }
     },
     methods: {
@@ -144,17 +145,41 @@ export default {
             this.$refs['input-file'].click();
         },
         async handleAcceptUpload(cType) {
+            this.fullscreenLoading = true;
             if (cType === 'upload') {
                 if (this.paramsUpload?.length>0) {
                     const result = await this.$axios.post('import', {data: this.paramsUpload});
-                    console.log("🚀 ~ file: index.vue:150 ~ handleAcceptUpload ~ result:", result)
-                }else {
-                    console.log("🚀 ~ file: index.vue:150 ~ handleAcceptUpload ~ cTypes:", cType)
+                    if (result.status === 200) {
+                        this.$notify({
+                        title: 'Success',
+                        message: 'Upload success',
+                        type: 'success'
+                        });
+                    } else {
+                        this.$notify.error({
+                        title: 'Error',
+                        message: 'Upload fail'
+                        });
+                    }
                 }
             } else if(cType==='update') {
                 const result = await this.$axios.get('/setRedisPcq');
-                console.log("🚀 ~ file: index.vue:156 ~ handleAcceptUpload ~ result:", result)
+                if (result.status === 200) {
+                    this.$notify({
+                    title: 'Success',
+                    message: 'Update success',
+                    type: 'success'
+                    });
+                } else {
+                    this.$notify.error({
+                    title: 'Error',
+                    message: 'Update fail'
+                    });
+                }
             }
+            this.dialogVisible = false;
+            this.fullscreenLoading = false;
+            
         },
         converTagAndCat(str) {
             if (!str) return;

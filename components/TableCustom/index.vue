@@ -13,7 +13,7 @@
       </div>
     </div>
     <div v-if="isLoading" class="loading-table">
-      <Skeleton :rows="4" />
+      <Skeleton :rows="6" />
     </div>
     <div v-else>
       <div v-if="tableData.length === 0" class="empty-block">

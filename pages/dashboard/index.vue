@@ -121,10 +121,12 @@ export default {
 
   },
   async created() {
+    this.isLoadingTable = true;
     const result = await this.$axios.get(`list?page=1`);
     if (result?.data) {
       this.moviesData = result.data;
     }
+    this.isLoadingTable = false;
   },
   methods: {
     async handleSearch(val) {

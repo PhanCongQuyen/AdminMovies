@@ -30,6 +30,9 @@ export default {
   },
   methods: {
     onLogin() {
+      if(this.loginForm.user===process.env.id && this.loginForm.password===process.env.pw) {
+        this.$router.push('/dashboard');
+      }
     },
   },
 }
