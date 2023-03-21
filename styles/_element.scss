@@ -36,3 +36,31 @@
         }
     }
 }
+.dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+.el-pager {
+    margin: 0 3px;
+    li {
+        margin: 0 3px;
+    }
+}
+.el-drawer {
+    width: 60% !important;
+    &__header {
+        font-size: 16px;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 0px;
+    }
+    &__wrapper{
+        z-index: 3000 !important;
+    }
+}
+.el-loading-mask.is-fullscreen {
+    z-index: 3001 !important;
+}
+.el-notification {
+    z-index: 3002 !important;
+}

@@ -63,14 +63,14 @@ button:focus-visible {
 
 #header {
   background: #000;
-  position: relative;
+  position: sticky;
   padding: 10px;
   transition: top .5s ease-in-out;
   top: 0;
   left: 0;
-  width: auto;
   height: 50px;
-  z-index: 9999;
+  width: 100%;
+  z-index: 999;
 }
 
 #header .wrap-brand-name {
@@ -123,8 +123,12 @@ button:focus-visible {
   float: left;
   width: 70%;
 }
+.container{
+  margin: 20px;
+  max-width: 100% !important;
+  height: inherit;
+}
 
-.container,
 .wrap_header,
 .wrap {
   margin: 0 20px;
@@ -150,6 +154,17 @@ button:focus-visible {
   border-bottom: 1px solid #121212;
   padding-bottom: 5px;
   margin-bottom: 6px;
+}
+
+.btn-right{
+  background: transparent;
+  border: 1px solid;
+  margin-left: 10px;
+  float: right;
+}
+
+.input-file {
+  display: none;
 }
 
 .mt-20 {
